@@ -5,7 +5,7 @@ const initialState = {
   values: [] as Coordinate[],
 };
 
-interface Coordinate {
+export interface Coordinate {
   x: number;
   y: number;
 }
@@ -43,8 +43,9 @@ export const useFunctionValues = () => {
       setIsConnected(false);
     });
 
-    socket?.on("new coordinates", (value: Coordinate) => {
-      dispatch({ type: "ADD_VALUE", payload: value });
+    socket?.on("new coordinates", (coord: Coordinate) => {
+      console.log("Received new coordinates", coord);
+      dispatch({ type: "ADD_VALUE", payload: coord });
     });
 
     return () => {

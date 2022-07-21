@@ -1,13 +1,14 @@
 import React from "react";
+import { Canvas } from "./Canvas";
 import { useFunctionValues } from "./useFunctionValues";
 
 function App() {
   const { values, isConnected } = useFunctionValues();
 
   return (
-    <div>
+    <div style={{ width: "100%", height: "100%" }}>
       <p>Connected: {"" + isConnected}</p>
-      {JSON.stringify(values)}
+      <Canvas values={values} />
     </div>
   );
 }
