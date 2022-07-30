@@ -49,9 +49,8 @@ export const useFunctionValues = () => {
     });
 
     return () => {
-      socket?.off("connect");
-      socket?.off("disconnect");
-      socket?.off("new coordinates");
+      socket.off("disconnect");
+      socket.off("new coordinates");
     };
   });
 
