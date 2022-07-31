@@ -7,7 +7,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^28.1.6",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "NODE_OPTIONS=--experimental-vm-modules react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -42,5 +42,8 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-jest-amcharts": "^0.0.2",
+    "ts-jest": "^28.0.7"
+  }
 }

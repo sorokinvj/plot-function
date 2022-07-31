@@ -20,6 +20,7 @@ function App() {
       style={{
         padding: "1rem",
       }}
+      data-testid="app"
     >
       <div
         style={{
