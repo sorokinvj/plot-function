@@ -45,7 +45,8 @@ export const ChartView: React.FC<Props> = ({ values, switchToTableView }) => {
       })
     );
 
-    seriesRef.current?.data.setAll(values);
+    series.data.setAll(values);
+    console.log("setting initial values on the graph", values);
     seriesRef.current = series;
 
     return () => {
@@ -99,7 +100,14 @@ export const ChartView: React.FC<Props> = ({ values, switchToTableView }) => {
   }, [values]);
 
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        flexFlow: "column",
+        alignItems: "center",
+      }}
+      data-testid="chart-view"
+    >
       <h1 style={{ marginBottom: 0 }}>Plotting the function</h1>
       <h2 style={{ marginTop: 0, color: "#ff0000" }}>y = sin(x)</h2>
       <Button onClick={switchToTableView}>Show Table</Button>
@@ -107,6 +115,6 @@ export const ChartView: React.FC<Props> = ({ values, switchToTableView }) => {
         id="chartdiv"
         style={{ width: "100%", height: "500px", marginTop: "1rem" }}
       ></div>
-    </>
+    </div>
   );
 };

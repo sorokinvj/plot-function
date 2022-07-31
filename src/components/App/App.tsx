@@ -22,26 +22,11 @@ export const App: React.FC = () => {
       }}
       data-testid="app"
     >
-      <div
-        style={{
-          display: isChartView ? "flex" : "none",
-          flexFlow: "column",
-          alignItems: "center",
-        }}
-        data-testid="chart-view"
-      >
+      {isChartView ? (
         <ChartView values={values} switchToTableView={switchToTableView} />
-      </div>
-      <div
-        style={{
-          display: isChartView ? "none" : "flex",
-          flexFlow: "column",
-          alignItems: "center",
-        }}
-        data-testid="table-view"
-      >
+      ) : (
         <TableView values={values} switchToChartView={switchToChartView} />
-      </div>
+      )}
     </div>
   );
 };

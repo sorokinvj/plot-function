@@ -9,7 +9,14 @@ interface Props {
 }
 
 export const TableView: React.FC<Props> = ({ values, switchToChartView }) => (
-  <>
+  <div
+    style={{
+      display: "flex",
+      flexFlow: "column",
+      alignItems: "center",
+    }}
+    data-testid="table-view"
+  >
     <h1 style={{ marginBottom: 0 }}>Values for the function</h1>
     <h2 style={{ marginTop: 0, color: "#ff0000" }}>y = sin(x)</h2>
     <Button onClick={switchToChartView}>Show Chart</Button>
@@ -29,5 +36,5 @@ export const TableView: React.FC<Props> = ({ values, switchToChartView }) => (
         ))}
       </tbody>
     </table>
-  </>
+  </div>
 );
