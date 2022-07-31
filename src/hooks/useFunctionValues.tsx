@@ -44,7 +44,6 @@ export const useFunctionValues = () => {
     });
 
     socket?.on("new coordinates", (coord: Coordinate) => {
-      console.log("Received new coordinates", coord);
       dispatch({ type: "ADD_VALUE", payload: coord });
     });
 

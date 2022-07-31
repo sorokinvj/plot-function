@@ -2,8 +2,8 @@ import React, { useLayoutEffect, useEffect, useRef } from "react";
 import { Coordinate } from "../../hooks/useFunctionValues";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
-import { Root } from "@amcharts/amcharts5";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
+import { Button } from "components/Button/Button";
 
 interface Props {
   values: Coordinate[];
@@ -11,11 +11,10 @@ interface Props {
 }
 
 export const ChartView: React.FC<Props> = ({ values, switchToTableView }) => {
-  const chartRef = useRef<Root | null>(null);
   const seriesRef = useRef<am5xy.LineSeries | null>(null);
-  const xAxisRef = useRef<am5xy.ValueAxis<am5xy.AxisRenderer> | null>(null);
 
   useLayoutEffect(() => {
+    // init empty chart
     const root = am5.Root.new("chartdiv");
     root.setThemes([am5themes_Animated.new(root)]);
 
@@ -46,9 +45,8 @@ export const ChartView: React.FC<Props> = ({ values, switchToTableView }) => {
       })
     );
 
-    xAxisRef.current = xAxis;
+    seriesRef.current?.data.setAll(values);
     seriesRef.current = series;
-    chartRef.current = root;
 
     return () => {
       root.dispose();
@@ -57,16 +55,16 @@ export const ChartView: React.FC<Props> = ({ values, switchToTableView }) => {
 
   useEffect(() => {
     if (seriesRef.current) {
-      // seriesRef.current.data.setAll(values);
-      // console.log("values", values);
       const lastX = values[values.length - 1]?.x;
       const lastY = values[values.length - 1]?.y;
 
+      // update the chart with new values
       seriesRef.current.data.push({
         x: lastX,
         y: lastY,
       });
 
+      // draw a red circle at the last point
       seriesRef.current.bullets.push(function (root, series) {
         series.bulletsContainer.children.clear();
         const container: am5.Container = am5.Container.new(root, {});
@@ -102,8 +100,13 @@ export const ChartView: React.FC<Props> = ({ values, switchToTableView }) => {
 
   return (
     <>
-      <button onClick={switchToTableView}>Show Table</button>
-      <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+      <h1 style={{ marginBottom: 0 }}>Plotting the function</h1>
+      <h2 style={{ marginTop: 0, color: "#ff0000" }}>y = sin(x)</h2>
+      <Button onClick={switchToTableView}>Show Table</Button>
+      <div
+        id="chartdiv"
+        style={{ width: "100%", height: "500px", marginTop: "1rem" }}
+      ></div>
     </>
   );
 };

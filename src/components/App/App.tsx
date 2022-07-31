@@ -18,18 +18,27 @@ function App() {
   return (
     <div
       style={{
-        display: "flex",
-        flexFlow: "column",
-        alignItems: "center",
         padding: "1rem",
-        height: "97%",
       }}
     >
-      {isChartView ? (
+      <div
+        style={{
+          display: isChartView ? "flex" : "none",
+          flexFlow: "column",
+          alignItems: "center",
+        }}
+      >
         <ChartView values={values} switchToTableView={switchToTableView} />
-      ) : (
+      </div>
+      <div
+        style={{
+          display: isChartView ? "none" : "flex",
+          flexFlow: "column",
+          alignItems: "center",
+        }}
+      >
         <TableView values={values} switchToChartView={switchToChartView} />
-      )}
+      </div>
     </div>
   );
 }
