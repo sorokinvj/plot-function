@@ -46,7 +46,6 @@ export const ChartView: React.FC<Props> = ({ values, switchToTableView }) => {
     );
 
     series.data.setAll(values);
-    console.log("setting initial values on the graph", values);
     seriesRef.current = series;
 
     return () => {
