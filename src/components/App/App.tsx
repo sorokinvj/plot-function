@@ -3,7 +3,7 @@ import { ChartView } from "components/ChartView/ChartView";
 import { useFunctionValues } from "hooks/useFunctionValues";
 import { TableView } from "components/TableView/TableView";
 
-function App() {
+export const App: React.FC = () => {
   const { values } = useFunctionValues();
   const [isChartView, setChartView] = React.useState(true);
 
@@ -28,6 +28,7 @@ function App() {
           flexFlow: "column",
           alignItems: "center",
         }}
+        data-testid="chart-view"
       >
         <ChartView values={values} switchToTableView={switchToTableView} />
       </div>
@@ -37,11 +38,10 @@ function App() {
           flexFlow: "column",
           alignItems: "center",
         }}
+        data-testid="table-view"
       >
         <TableView values={values} switchToChartView={switchToChartView} />
       </div>
     </div>
   );
-}
-
-export default App;
+};
