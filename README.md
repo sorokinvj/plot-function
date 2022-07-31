@@ -21,11 +21,11 @@ The app itself is pretty simple, it has two main components that render chart an
 
 - From the testing perspective Amchart is not really a good choice: in order for tests to run, I had to heavily mock it, otherwise Jest crashes. However, if one would want to test points on the chart (if function is plotted correctly), then it means we basically want to test the library itself, which is outside of the app tests scope. Anyway, I think the process of choosing the library should be based on real requirements, by asking questions like "What is the weakest point of our app?", "Where exactly we want to gain extra confidence as developers?". In this simple app I don't think testing canvas is needed.
 
-# To run locally:
+## To run locally:
 
 `yarn start`
 
-# To run tests:
+## To run tests:
 
 `yarn test`
 
