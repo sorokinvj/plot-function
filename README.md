@@ -1,7 +1,7 @@
-This is the app that plots function graphs. It is deployed [here](https://plot-function.vercel.app/)
-The frontend receives new coordinates via websocket from the backend, which is deployed [here](https://enigmatic-garden-78129.herokuapp.com).
+This is the app that plots function graphs. It is deployed [here](https://plot-function.vercel.app/).
 
-Backend repo is [here](https://github.com/sorokinvj/function-values-socket-server)
+The frontend receives new coordinates via websocket from the backend, which is deployed [here](https://enigmatic-garden-78129.herokuapp.com).
+Backend repo -> [https://github.com/sorokinvj/function-values-socket-server](https://github.com/sorokinvj/function-values-socket-server)
 Every second, the backend sends new coordinates of the function `f(x = sin(x)` to the frontend. The initial value is {x: 0, y: 0}. The increment step is 0.1.
 
 The frontend of the app is based on Create React App package. I had to eject it to tune Jest setup.
