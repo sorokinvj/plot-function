@@ -1,11 +1,16 @@
 This is the app that plots function graphs.
 it receives new coordinate values via websocket from the backend, which is deployed [here](https://enigmatic-garden-78129.herokuapp.com). Backend repo is [here](https://github.com/sorokinvj/function-values-socket-server)
 
-The frontend of the app is based on Create React App package. I had to eject it to tune Jest setup.
+Every second, the backend sends new coordinates of the function f(x = sin(x) to the frontend. The initial value is {x: 0, y: 0}. The increment step is 0.1.
 
+The frontend of the app is based on Create React App package. I had to eject it to tune Jest setup.
 The app itself is pretty simple, it has two components that render chart and table view.
 
 # Design choices:
+
+- on the backend I decided to send only new coordinates of the function, not the whole array with values. Because we save all values on the frontend there is no need to transmit all the data, so we could minimize the amount of bytes sent over the network.
+
+- for state management on the frontend I decided to use React.useReducer. It gives the same functionality as Redux, but without redundant boilerplate. If we would run into performance issues then we would probably either a) tune the app more carefully with useMemo or memo() or b) use Redux-toolkit which has some performance optimizations.
 
 - to show chart I am using Amcharts library, its quite big, but it is easy to use and you can achieve interesting animation, like the red bullet highlighting last received value.
 
@@ -17,3 +22,4 @@ The app itself is pretty simple, it has two components that render chart and tab
 
 - When received values reach the end of the x-axis, it should be resized.
 - Let the user resize the graph
+- send the initial value of x to the backend, so the stream of values could be initialized from it.

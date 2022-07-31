@@ -52,6 +52,7 @@ export const ChartView: React.FC<Props> = ({ values, switchToTableView }) => {
     return () => {
       root.dispose();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

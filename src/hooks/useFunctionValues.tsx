@@ -27,7 +27,7 @@ const reducer = (state: typeof initialState, action: Action) => {
   }
 };
 
-const socket = io("https://enigmatic-garden-78129.herokuapp.com");
+const socket = io(process.env.REACT_APP_BACKEND_URL || "");
 
 export const useFunctionValues = () => {
   const [isConnected, setIsConnected] = useState(false);
